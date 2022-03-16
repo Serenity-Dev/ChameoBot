@@ -1,0 +1,290 @@
+{
+  "command": [
+    {
+      "name": "help",
+      "actions": []
+    },
+    {
+      "name": "info",
+      "actions": []
+    },
+    {
+      "name": "xp",
+      "actions": [
+        {
+          "name": "Get User's XP",
+          "category": "User Data",
+          "type": "Get User Data",
+          "messageActionRows": [],
+          "user": "${dbsVars.CommandAuthor.id}",
+          "field": "xp",
+          "varname": "UserXP",
+          "savevartype": "server",
+          "vartype": "User"
+        },
+        {
+          "name": "Show XP Amount",
+          "category": "Message",
+          "type": "Send Message",
+          "messageActionRows": [],
+          "channelname": "${dbsVars.CommandChannel.id}",
+          "messagetext": "You have ${tempVars.UserXP} xp!",
+          "savetovariable": "",
+          "savetovariabletype": "server"
+        }
+      ]
+    },
+    {
+      "name": "givexp",
+      "actions": [
+        {
+          "name": "Check If Admin",
+          "category": "User Action",
+          "type": "Check User Permissions",
+          "trueActions": [
+            {
+              "name": "Get User To Give XP To",
+              "category": "Variable",
+              "type": "Get Mentioned User",
+              "messageActionRows": [],
+              "varname": "xpuser",
+              "vartype": "User",
+              "savevartype": "temp"
+            },
+            {
+              "name": "Get XP Amount",
+              "category": "Variable",
+              "type": "Store Value in Variable",
+              "messageActionRows": [],
+              "varname": "xpamount",
+              "vartype": "Number",
+              "savevartype": "server",
+              "param": "2"
+            },
+            {
+              "name": "Give Them XP",
+              "category": "User Data",
+              "type": "Edit User Data",
+              "messageActionRows": [],
+              "user": "${tempVars.xpuser.id}",
+              "field": "xp",
+              "oper": "+",
+              "value": "${tempVars.xpamount}"
+            },
+            {
+              "name": "Send Response",
+              "category": "Message",
+              "type": "Send Message",
+              "messageActionRows": [],
+              "channelname": "${dbsVars.CommandChannel.id}",
+              "messagetext": "Gave <@${tempVars.xpuser.id}> ${tempVars.xpamount} xp!",
+              "savetovariable": "",
+              "savetovariabletype": "server"
+            }
+          ],
+          "falseActions": [
+            {
+              "name": "Error Message",
+              "category": "Message",
+              "type": "Send Message",
+              "messageActionRows": [],
+              "channelname": "${dbsVars.CommandChannel.id}",
+              "messagetext": "You don't have permission to do that!",
+              "savetovariable": "",
+              "savetovariabletype": "server"
+            }
+          ],
+          "messageActionRows": [],
+          "user": "${dbsVars.CommandAuthor.id}",
+          "permissions": [
+            "ADMINISTRATOR"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "react",
+      "actions": [
+        {
+          "name": "Reaction Menu",
+          "category": "Message",
+          "type": "Send Embed",
+          "messageActionRows": [],
+          "channelname": "${dbsVars.CommandChannel.id}",
+          "color": "FF0000",
+          "title": "Test Reaction",
+          "url": "",
+          "authorname": "Chameo Bot",
+          "authorimageurl": "",
+          "authorlink": "",
+          "description": "This should collect reactions.",
+          "thumbnail": "",
+          "image": "",
+          "footer": "",
+          "timestamp": "false",
+          "savetovariable": "reactionMenu",
+          "savetovariabletype": "server"
+        },
+        {
+          "name": "Listener",
+          "category": "Reaction",
+          "type": "Add Reaction Listener",
+          "reactionActions": {
+            "🤠": [
+              {
+                "name": "Add Test 1 Role",
+                "category": "User Action",
+                "type": "Add Role to User",
+                "messageActionRows": [],
+                "user": "${tempVars.reactionUser.id}",
+                "rolename": "Test 1"
+              },
+              {
+                "name": "Test 1 Role Message",
+                "category": "Message",
+                "type": "Send Message",
+                "messageActionRows": [],
+                "channelname": "${dbsVars.CommandChannel.id}",
+                "messagetext": "You have been added to Test 1 role! Congratulations!!! ${tempVars.reactionEmoji}",
+                "savetovariable": "",
+                "savetovariabletype": "server"
+              }
+            ],
+            "🧛🏻‍♂️": [
+              {
+                "name": "Add Test 2 Role",
+                "category": "User Action",
+                "type": "Add Role to User",
+                "messageActionRows": [],
+                "user": "${tempVars.reactionUser.id}",
+                "rolename": "Test 2"
+              },
+              {
+                "name": "Test 2 Role Message",
+                "category": "Message",
+                "type": "Send Message",
+                "messageActionRows": [],
+                "channelname": "${dbsVars.CommandChannel.id}",
+                "messagetext": "You have been added to Test 2 role! Congratulations!!! ${tempVars.reactionEmoji}",
+                "savetovariable": "",
+                "savetovariabletype": "server"
+              }
+            ],
+            "💖": [
+              {
+                "name": "Add Test 3 Role",
+                "category": "User Action",
+                "type": "Add Role to User",
+                "messageActionRows": [],
+                "user": "${tempVars.reactionUser.id}",
+                "rolename": "Test 3"
+              },
+              {
+                "name": "Test 3 Role Message",
+                "category": "Message",
+                "type": "Send Message",
+                "messageActionRows": [],
+                "channelname": "${dbsVars.CommandChannel.id}",
+                "messagetext": "You have been added to Test 3 role! Congratulations!!! ${tempVars.reactionEmoji}",
+                "savetovariable": "",
+                "savetovariabletype": "server"
+              }
+            ]
+          },
+          "messageActionRows": [],
+          "message": "${serverVars.reactionMenu.id}",
+          "duration": "0",
+          "reactionemoji": "reactionEmoji",
+          "reactionuser": "reactionUser",
+          "react": "BOOL_TRUE@@"
+        }
+      ]
+    },
+    {
+      "name": "ticket",
+      "actions": [
+        {
+          "name": "Check for Ticket Already",
+          "category": "Control",
+          "type": "Switch Case",
+          "valueActions": {
+            "no": [
+              {
+                "name": "Make Ticket Channel",
+                "category": "Channel Action",
+                "type": "Create Channel",
+                "messageActionRows": [],
+                "channelname": "ticket_${dbsVars.CommandAuthor.id}",
+                "chancategory": "tickets",
+                "reason": "",
+                "channeltype": "Text",
+                "savetovariable": "new_ticket_channel",
+                "savetovariabletype": "temp"
+              },
+              {
+                "name": "Make Channel Private",
+                "category": "Channel Action",
+                "type": "Update Channel Permissions",
+                "messageActionRows": [],
+                "channelname": "${tempVars.new_ticket_channel.id}",
+                "permid": "${dbsVars.guild.id}",
+                "permissions": [
+                  "VIEW_CHANNEL",
+                  "SEND_MESSAGES"
+                ],
+                "allow": "Deny"
+              },
+              {
+                "name": "User Can View",
+                "category": "Channel Action",
+                "type": "Update Channel Permissions",
+                "messageActionRows": [],
+                "channelname": "${tempVars.new_ticket_channel.id}",
+                "permid": "${dbsVars.CommandAuthor.id}",
+                "permissions": [
+                  "VIEW_CHANNEL",
+                  "SEND_MESSAGES"
+                ],
+                "allow": "Allow"
+              },
+              {
+                "name": "Ticket Welcome",
+                "category": "Message",
+                "type": "Send Embed",
+                "messageActionRows": [],
+                "channelname": "${tempVars.new_ticket_channel.id}",
+                "color": "FFFFFF",
+                "title": "Ticket Opened",
+                "url": "",
+                "authorname": "Chameo Bot",
+                "authorimageurl": "",
+                "authorlink": "",
+                "description": "",
+                "thumbnail": "",
+                "image": "",
+                "footer": "",
+                "timestamp": "false",
+                "savetovariable": "",
+                "savetovariabletype": "temp"
+              }
+            ],
+            "yes": [
+              {
+                "name": "Duplicate Ticket",
+                "category": "Message",
+                "type": "Send Message",
+                "messageActionRows": [],
+                "channelname": "${dbsVars.CommandChannel.id}",
+                "messagetext": "You already have a ticket open. Please resolve that ticket before opening a new ticket.",
+                "savetovariable": "",
+                "savetovariabletype": "temp"
+              }
+            ]
+          },
+          "messageActionRows": [],
+          "varname": "${tempVars.new_ticket_channel.id}"
+        }
+      ]
+    }
+  ]
+}

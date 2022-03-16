@@ -1,0 +1,48 @@
+[{
+  "129835479855136768": "1",
+  "940460033483866173": "2"
+},{},{
+  "UserXP": 200,
+  "reactionMenu": "3",
+  "xpamount": "4"
+},{
+  "channelId": "5",
+  "guildId": "6",
+  "id": "7",
+  "createdTimestamp": 1644746314635,
+  "type": "8",
+  "system": false,
+  "content": "9",
+  "authorId": "10",
+  "pinned": false,
+  "tts": false,
+  "nonce": null,
+  "embeds": "11",
+  "components": "12",
+  "attachments": "13",
+  "stickers": "14",
+  "editedTimestamp": null,
+  "webhookId": null,
+  "groupActivityApplicationId": null,
+  "applicationId": null,
+  "activity": null,
+  "flags": 0,
+  "reference": null,
+  "interaction": null,
+  "cleanContent": "9"
+},"<@!388601163567595522>","940460034314362932","940460033483866173","942359087457374208","DEFAULT","","938641198548152370",[
+  "15"
+],[],[],[],{
+  "type": "16",
+  "title": "17",
+  "description": "18",
+  "url": null,
+  "color": 16711680,
+  "timestamp": null,
+  "fields": "19",
+  "thumbnail": null,
+  "image": null,
+  "video": null,
+  "provider": null,
+  "footer": null
+},"rich","Test Reaction","This should collect reactions.",[]]
